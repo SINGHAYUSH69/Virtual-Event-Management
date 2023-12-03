@@ -1,0 +1,185 @@
+<!-- create_event.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management</title>
+    <style>
+        body {
+      font-family: Arial, sans-serif;
+      background:url('fool.png');
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-size:cover;
+      
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      color: #ccc;
+      background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  transition: all 0.4s;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+      padding: 10px 15px;
+      border: 5px solid #3498db;
+      cursor: pointer;
+      font-size:15px;
+    }
+     button:hover
+    {
+     color:#ccc;
+     background: -webkit-linear-gradient(left, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+     transition: all 0.4s;
+     }
+    h1 {
+       color: white;
+       font-style:'MONTSERRAT';
+       text-align:center;
+        }
+    nav {
+            background-color: black; /* Color for the navigation bar */
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;}
+     nav a {
+            color: #A9A9A9; /* Text color for the navigation links */
+            text-decoration: none; /* Remove underlines from links */
+            margin: 0 15px;
+            font-weight: bold;
+}
+       nav a:hover
+{
+        color:#3498db;
+} 
+#popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding:5px;
+      background-color:white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      width:300px;
+      height:250px;
+      border:1px solid black;
+      text-align:center;
+      
+}
+    </style>
+</head>
+<body>
+ <nav>
+        <div>
+            <!-- Home Link -->
+            <a href="index3.html">Home</a>
+            
+            <!-- About Us Link -->
+            <a href="test1.html">About</a>
+            
+            <!-- Contacts Link -->
+            <a href="contact.html">Contact Us</a>
+        </div>
+
+        <!-- Login Button -->
+        <a href="login2.html" style="background-color: #e74c3c; padding: 10px 20px; border-radius: 5px; color: #fff; text-decoration: none; font-weight: bold;">Login</a>
+    </nav>
+
+    <div style="margin-top:2px">
+  <h1 style="font-size:50px;color:black">Create Event</h1>
+  </div>
+  <div style="width:60%;margin:auto">
+  <form id="createEventForm">
+    <label for="eventName">Event Name:</label>
+    <input type="text" id="eventName" name="eventName" required>
+    <label for="eventDate">Date:</label>
+    <input type="date" id="eventDate" name="eventDate" required>
+
+    <label for="eventTime">Time:</label>
+    <input type="time" id="eventTime" name="eventTime" required>
+
+    <label for="eventType">Type of Event:</label>
+    <select id="eventType" name="eventType" required>
+      <option value="Birthday">Birthday</option>
+      <option value="Ceremony">Ceremony</option>
+      <option value="Official">Official</option>
+      <option value="Other">Other</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <label for="maxParticipants">Maximum No. of Participants:</label>
+    <input type="number" id="maxParticipants" name="maxParticipants" min="1" required>
+    <div style="margin:auto;width:200px">
+    <button type="button" onclick="submitEvent()">Create Event</button>
+    </div>
+  </form>
+  </div>
+    </form>
+  <div id="popup">
+  <img src="tick.png" style="width:50px;margin-top:-40px">
+  <h2>Thank You!</h2>
+  <p STYLE="font-weight:900;text-align:center">Your Event has been Created.</p>
+  <p id="randomNumber" style="font-size:20px;color:#A9A9A9;text-align:center;padding-top:5px"></p>
+  <button onclick="hidePopup()" style="margin:0px 30%;background:#6fd649;width:40%">Close</button>
+</div>
+    <script>
+        function submitEvent() {
+            var eventName = document.getElementById("eventName").value;
+            var eventDate = document.getElementById("eventDate").value;
+            var eventTime = document.getElementById("eventTime").value;
+            var eventType = document.getElementById("eventType").value;
+            var maxParticipants = document.getElementById("maxParticipants").value;
+            document.getElementById('popup').style.display = 'block';
+
+            // Create a new event object
+            var event = {
+                name: eventName,
+                date: eventDate,
+                time: eventTime,
+                type: eventType,
+                maxParticipants: maxParticipants
+            };
+
+            // Save the event to local storage
+            saveEvent(event);
+        }
+         function hidePopup() {
+             document.getElementById('popup').style.display='none';
+}
+
+        function saveEvent(event) {
+            // Retrieve existing events from local storage
+            var events = JSON.parse(localStorage.getItem('events')) || [];
+
+            // Add the new event
+            events.push(event);
+
+            // Save the updated events back to local storage
+            localStorage.setItem('events', JSON.stringify(events));
+        }
+    </script>
+</body>
+</html>

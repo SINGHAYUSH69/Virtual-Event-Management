@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Popup Login Form Design | CodingNepal</title>
+      <link rel="stylesheet" href="font.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <style>
+      #success-message {
+      display: none;
+      color: green;
+      margin-top: 10px;
+      }
+      #continueButton {
+      display: none;
+      }
+   </style>
+   </head>
+   <body>
+      <div class="center">
+         
+         
+         <div class="container">
+            <div class="text">
+               Register
+            </div>
+            <form action="#" onsubmit="return handleRegistration()">
+               <div class="data">
+                  <label>Email</label>
+                  <input type="email" required>
+               </div>
+               <div class="data">
+                  <label>Password</label>
+                  <input type="password" required>
+               </div>
+               <div class="btn">
+                  <div class="inner"></div>
+                  <button type="submit" style="padding-bottom:50px">Sign Up</button>
+               </div>
+               <div><h2 id="success-message">Succesfully Registered</h2></div>
+               <div class="btn" id="continueButton">
+                  <div class="inner"></div>
+                  <a href="create.html" style="text-decoration:none"><button type="button">Continue</button></a>
+               </div>
+            </form>
+         </div>
+      </div>
+      <script>
+      function handleRegistration() {
+      showSuccessMessage();
+      showContinueButton();
+      return false;
+      }
+     function showSuccessMessage() {
+      var successMessage = document.getElementById('success-message');
+      successMessage.style.display = 'block';
+      }
+      function showContinueButton() {
+      var continueButton = document.getElementById('continueButton');
+      continueButton.style.display = 'block';
+     }
+   </script>
+   </body>
+</html>
